@@ -207,6 +207,8 @@ public class CommentDAO {
 		
 	}
 	
+	
+	
 	public int deleteAllComment(int article_seq) {
 		
 		int cnt = 0;

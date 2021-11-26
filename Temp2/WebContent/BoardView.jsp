@@ -104,10 +104,13 @@ p{
 	int seq_num = Integer.parseInt(num);
 	BoardDAO dao = new BoardDAO();
 	BoardVO vo = dao.showOneArticle(seq_num);
+	UserDAO dao2 = new UserDAO();
 	
 	UserVO vo2 = (UserVO)session.getAttribute("user");
 	String currentUser = vo2.getId();
 	String writer = vo.getU_id();
+	UserVO vo3 = dao2.selectOne(currentUser);
+	String commentWriter = vo3.getNick();
 	
 	UserDAO daoUser = new UserDAO();
 	String currentNick = daoUser.selectOne(currentUser).getNick();
@@ -234,7 +237,7 @@ p{
           <span class="d-block">
           <span id="comment_seq" style="display:none;"><%=voComment.getComm_seq() %></span>
           <span id="commentWriter_id" style="display:none;"><%=voComment.getU_id() %></span>
-          <strong id="commentWriter_nick" class="text-gray-dark"><%=currentNick %></strong>
+          <strong id="commentWriter_nick" class="text-gray-dark"><%=commentWriter %></strong>
           <span id="comment_date" class="board_date board_info_box"><%=voComment.getReg_date() %></span>
           <br>
           <span id="comment_content" class =<%=voComment.getComm_seq() %>><%=voComment.getComm_content() %></span>
