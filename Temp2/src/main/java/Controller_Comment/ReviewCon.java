@@ -19,14 +19,14 @@ public class ReviewCon extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.println("접근 성공");
 		int rate =Integer.parseInt(request.getParameter("star"));
-		UserVO vo= (UserVO) session.getAttribute("user");
-		//String id = vo.getU_id();
-		String id = "u_id 01";
+		UserVO vo = (UserVO) session.getAttribute("user");
+		String id = vo.getId();
 		int cnum  = Integer.parseInt(request.getParameter("cnum"));
 		String opinion = request.getParameter("opinion");
 		System.out.println(rate);
 		System.out.println(cnum);
 		System.out.println(opinion);
+		System.out.print(id);
 		
 		ReviewDAO dao = new ReviewDAO();
 		int cnt = dao.reviewWt(cnum, id, rate, opinion);

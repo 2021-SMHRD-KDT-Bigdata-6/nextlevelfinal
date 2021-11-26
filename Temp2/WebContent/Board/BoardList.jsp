@@ -77,7 +77,7 @@
                     <div class="breadcrumb__text">
                         <h2>커뮤니티</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.jsp">Home</a>
+                            <a href="../index.jsp">Home</a>
                             <span>자유게시판</span>
                         </div>
                     </div>
