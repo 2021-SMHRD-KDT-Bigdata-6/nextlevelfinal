@@ -223,28 +223,38 @@ p{
 			
 			
 	<!-- 댓글 한마디-->
+		
 	<div class="container" style="overflow:auto; height:400px;">
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 		<h6 class="border-bottom pb-2 mb-0">댓글</h6>
-				
+		
+		<%for(CommentVO voComment : al){ %>			
 		<div class="media text-muted">
-      <p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
-           <span class="d-block">
-          <strong class="text-gray-dark">아이디</strong>
-          <span class="board_date board_info_box">2021-11-25</span>
+      	<p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
+          <span class="d-block">
+          <span id="comment_seq" style="display:none;"><%=voComment.getComm_seq() %></span>
+          <span id="commentWriter_id" style="display:none;"><%=voComment.getU_id() %></span>
+          <strong id="commentWriter_nick" class="text-gray-dark"><%=currentNick %></strong>
+          <span id="comment_date" class="board_date board_info_box"><%=voComment.getReg_date() %></span>
           <br>
-          <span>내용내용내용나나나나나나나나나나나나나</span>
+          <span id="comment_content" class =<%=voComment.getComm_seq() %>><%=voComment.getComm_content() %></span>
           <span style="font-size: 9pt; padding-left: 10px;">
-          <a href="#">수정</a>
-          <a href="#">삭제</a>
-          <a href="#">관리</a>
+          <%if(voComment.getU_id().equals(currentUser) || voComment.getU_id().equals("admin")){%>
+          <span class="button"><button onclick = "updateComment()" class="<%=voComment.getComm_seq() %>" style="border-color: #FF7F50; 	background-color: #FF7F50; color: #fff; border-radius: 8px; border: 10px;">수정</button></span>
+          <span class="button"><button onclick = "deleteComment()" class="<%=voComment.getComm_seq() %>" style="border-color: #FF7F50; 	background-color: #FF7F50; color: #fff; border-radius: 8px; border: 10px;">삭제</button></span>
+          <button id =<%=voComment.getComm_seq()%> class="confirm btn btn-sm btn-primary" style ="display : none; border-color: #FF7F50; 	background-color: #FF7F50; color: #fff; border-radius: 8px; border: 10px;" onclick = "confirmUpdate()">확인</button>
+          <%} %>
       </span>
       </span>
       </p>
       </div>
+      <%} %>
    	<!-- 댓글 한마디 끝-->
+     
+     
+     
        
-    <!-- 댓글 한마디-->
+    <!--
     <div class="media text-muted">
     
        <p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
@@ -261,10 +271,10 @@ p{
         </span>
         </p>
     </div>
-    <!-- 댓글 한마디 끝-->
+
     
     
-    <!-- 댓글 한마디-->
+
     <div class="media text-muted">
     
         <p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
@@ -281,10 +291,10 @@ p{
         </span>
         </p>
     </div>
-    <!-- 댓글 한마디 끝-->
+
     
     
-    <!-- 댓글 한마디-->
+
     <div class="media text-muted">
     
         <p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
@@ -301,9 +311,9 @@ p{
         </span>
         </p>
     </div>
-    <!-- 댓글 한마디 끝-->
+
     
-    <!-- 댓글 한마디-->
+  
     <div class="media text-muted">
     
         <p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
@@ -320,7 +330,7 @@ p{
         </span>
         </p>
     </div>
-    <!-- 댓글 한마디 끝-->
+    -->
     
     
     		<!-- 자동 스크롤 -->
@@ -328,7 +338,7 @@ p{
 			
 			<!--  자동 스크롤 끝 -->
     </div>
-
+	</div>
 	</article>
 
 
@@ -351,6 +361,135 @@ p{
 	<script src="js/mixitup.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+	
+	function deleteComment(){
+
+
+		
+		let num = event.target.className
+	
+	
+		
+		$.ajax({
+			
+			url : "DeleteComment",
+			data : { comm_seq : num },
+			success : function(){
+				alert("댓글삭제 완료")
+				location.reload();
+			},
+			error : function(){
+				alert("댓글삭제 실패")
+				
+			}
+			
+			
+			
+		})
+	
+
+		
+	}
+	
+	function updateComment(){
+		
+		let num = event.target.className
+		
+		
+		let contents = $('span.'+num).text()
+
+		
+		$('span.'+num).contents().unwrap().wrap( '<input id = "updatedContent" type="text" value="'+contents+'">');
+		
+
+
+		$('span.button').attr('style', "display:none;");
+		
+		
+		$('button#'+num).attr('style', "display:;");
+
+	}
+		
+	function confirmUpdate(){
+		
+		let num = event.target.id
+		
+		let updatedContent = $('input#updatedContent').val()
+		
+		$('input.updatedContent').contents().unwrap().wrap( '<td class = '+num+'>'+updatedContent+'</td>');
+		
+		$('td.button').attr('style', "display:;");
+		
+		$('button#'+num).attr('style', "display:none;");
+		
+		$.ajax({
+			
+			type : "post",
+			url : "UpdateComment",
+			data : { comm_seq : num, comm_content : updatedContent },
+			success : function(){
+				alert("댓글수정 완료")
+				location.reload();
+			},
+			error : function(){
+				alert("댓글수정 실패")
+				
+			}
+				
+		})
+		
+	}		
+	
+	</script>
+	<script>
+	$('#comment_submit').on('click', function(){
+		console.log("testtest");
+		let article_num = $('#article_seq').val();
+		let comm_content = $('#comment_content').val();
+		let comm_id = $('#comment_id').val();
+		
+
+		if(comm_content == ""){
+			alert("내용을 입력하세요.");
+		}
+		
+		let obj = new Object();
+		obj.num = article_num;
+		obj.content = comm_content;
+		obj.id = comm_id;
+		/* {
+				num : article_num,
+				content : comm_content,
+				id : comm_id
+		} */
+		
+		$.ajax({
+			type : "post",
+			url : 'WriteComment',
+			//contentType : "utf-8",
+			data : {
+				jsonData : JSON.stringify(obj)	
+			},
+			success : function(){
+				alert("작성완료");
+			},
+			error : function(){
+
+			}
+			
+			
+		});
+		
+		
+		location.reload();
+		
+	
+		
+	})
+	
+	
+	</script>
 
 </body>
 
