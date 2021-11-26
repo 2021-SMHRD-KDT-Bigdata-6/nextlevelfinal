@@ -9,6 +9,7 @@ $(function(){
 				  contentType:'utf-8',
 			  	  success:function(){
 			  		$("#popupsc").css('display','flex').hide().fadeIn(0.01);
+					$('#modal-open').css('backgroundColor','gray').css('padding-top','0px').css('cursor','default').html('수강중인 강의')
 			console.log("성공")
 			  	  },
 			  	  error:function(){

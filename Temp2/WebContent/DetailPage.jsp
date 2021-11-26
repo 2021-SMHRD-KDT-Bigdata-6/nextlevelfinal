@@ -129,7 +129,7 @@ int distnum = dao.DistinctClass(cnum);
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><!-- <a href="./index.html">H</a></li> -->
-                            <li><a href="./shop.html">주변강의</a></li>
+                            <li><a href="./shop.jsp">주변강의</a></li>
                             <li><a href="serch.html">관심성향테스트</a>
                                 <!-- <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
@@ -342,23 +342,25 @@ int distnum = dao.DistinctClass(cnum);
 
     <!-- Related Product Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+   	<!-- Footer Section Begin -->
+	<footer class="footer spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6" style="position: relative; right: -88px;">
+					<div class="footer__about" style="width: 320px;">
+						<div class="footer__about__logo">
+							<a href="./index.html"><img src="img/index/lastlo.png" alt=""></a>
+						</div>
+						<ul>
+							<!-- <li>팀명 : NEXT LEVEL</li>
+							<li>팀원 : 서정현 김대우 김영웅 박민 이다연 정유진</li> -->
+							<li>주소 : 광주 남구 송암로 60 광주CGI센터 2층</li>
+							<li>전화번호 : 062-655-3509</li>
+							<li>Email: smhrd@smhrd.or.kr</li>
+						</ul>
+					</div>
+				</div>
+				<!-- <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                     <div class="footer__widget">
                         <h6>Useful Links</h6>
                         <ul>
@@ -378,36 +380,37 @@ int distnum = dao.DistinctClass(cnum);
                             <li><a href="#">Testimonials</a></li>
                         </ul>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+                </div> -->
+				<div class="col-lg-4 col-md-12">
+					<div class="footer__widget" style="position: relative; left: 447px;">
+						<h6>Join Our Newsletter Now</h6>
+						<p>Get E-mail updates about our latest shop and special
+							offers.</p>
+						<form action="#">
+							<input type="text" placeholder="Enter your mail">
+							<button type="submit" class="site-btn">Subscribe</button>
+						</form>
+						<div class="footer__widget__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-instagram"></i></a> <a href="#"><i
+								class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer__copyright" style="position: relative; left: 454px;">
+						<div class="footer__copyright__text">
+							<ul style="text-align: center;">
+								<li>팀명 : NEXT LEVEL</li>
+								<li>팀원 : 서정현 김대우 김영웅 박민 이다연 정유진</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
     
      <!-- modal -->
     
@@ -430,7 +433,7 @@ int distnum = dao.DistinctClass(cnum);
         </div>
       </div>
       <div class="popup-foot">
-        <span class="pop-btn confirm" id="confirm1">강의 수강</span>
+        <span class="pop-btn confirm" id="confirm1" style="padding-top:0px">강의 수강</span>
         <span class="pop-btn closed" id="closed">취소</span>
       </div>
     </div>
