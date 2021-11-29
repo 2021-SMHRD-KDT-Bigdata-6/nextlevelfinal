@@ -127,6 +127,8 @@ p{
 	ArrayList<CommentVO> al = daoComment.showComment(seq_num);
 	
 	
+	
+	
 %>
 
 
@@ -231,13 +233,17 @@ p{
 	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 		<h6 class="border-bottom pb-2 mb-0">댓글</h6>
 		
-		<%for(CommentVO voComment : al){ %>			
+		<%for(CommentVO voComment : al){ %>	
+		<%
+			String idWhoWrote = voComment.getU_id();
+			String nickWhoWrote = daoUser.selectOne(idWhoWrote).getNick();
+		%>	
 		<div class="media text-muted">
       	<p class="media-body small lh-125 border-bottom horder-gray" style="padding-bottom: 8px;">
           <span class="d-block">
           <span id="comment_seq" style="display:none;"><%=voComment.getComm_seq() %></span>
           <span id="commentWriter_id" style="display:none;"><%=voComment.getU_id() %></span>
-          <strong id="commentWriter_nick" class="text-gray-dark"><%=commentWriter %></strong>
+          <strong id="commentWriter_nick" class="text-gray-dark"><%=nickWhoWrote %></strong>
           <span id="comment_date" class="board_date board_info_box"><%=voComment.getReg_date() %></span>
           <br>
           <span id="comment_content" class =<%=voComment.getComm_seq() %>><%=voComment.getComm_content() %></span>

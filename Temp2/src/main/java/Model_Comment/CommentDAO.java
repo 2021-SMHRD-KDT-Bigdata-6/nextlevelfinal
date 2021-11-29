@@ -168,6 +168,52 @@ public class CommentDAO {
 		
 		
 	}
+	
+	
+	
+	public CommentVO selectOneComment(int comm_seq) {
+		CommentVO vo = null;
+		try {
+			get_conn();
+			// 3. 실행할 sql 정의
+			String sql = "select * from T_COMMENT where comm_seq = ?";
+
+			// 4. PreparedStatement 객체 생성
+			pst = conn.prepareStatement(sql);
+			
+			pst.setInt(1, comm_seq);
+
+			// 6. sql 실행 결과처리
+			rs = pst.executeQuery();
+			
+			
+			
+			while (rs.next()) {
+				int article_seq = rs.getInt("article_seq");
+				String comm_content = rs.getString("comm_content");
+				String reg_date = rs.getString("reg_date");
+				String u_id = rs.getString("u_id");
+				
+				vo = new CommentVO(comm_seq, article_seq, comm_content, reg_date, u_id);
+				
+			}
+
+		} catch (Exception e) {
+			System.out.println("불러오기 실패!");
+			e.printStackTrace();
+
+		} finally {
+			close();
+			
+
+		}
+		
+		return vo;
+		
+		
+	}
+	
+	
 
 	
 	public int deleteComment(int comm_seq) {
